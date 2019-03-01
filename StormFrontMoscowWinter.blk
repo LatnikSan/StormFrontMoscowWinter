@@ -95,6 +95,112 @@ mission_settings{
     scoreLimit:i=20000
     allowEmptyTeams:b=yes
 
+    customRules{
+      name:t="sharedPool"
+
+      teams{
+        teamA{
+          unlimitedUnits{
+            i-16_type24:b=yes
+            i-16_type27:b=yes
+            i-16_type28:b=yes
+            i_185_m82:b=yes
+            lagg-3-29:b=yes
+            lagg-3-34:b=yes
+            lagg-3-35:b=yes
+            lagg-3-66:b=yes
+            lagg-i-301:b=yes
+            la-5_type37_early:b=yes
+            la-5_type39:b=yes
+            la-5fn:b=yes
+            mig_3_series_1_15_bk_pod:b=yes
+            mig_3_series_34:b=yes
+            i-153_m62:b=yes
+            i-153p:b=yes
+            yak-1_early:b=yes
+            yak-1b:b=yes
+            yak-7b:b=yes
+            yak-9:b=yes
+            yak-9b:b=yes
+            yak-9t:b=yes
+            yak-9k:b=yes
+            yak-9m:b=yes
+            p-39k_1:b=yes
+            p-39n_su:b=yes
+            p-40e_ussr:b=yes
+            p-47d_ussr:b=yes
+            p-63a-5_ussr:b=yes
+            hurricanemkii_ussr:b=yes
+            il-2i:b=yes
+            il_2_1941:b=yes
+            il_2_1942:b=yes
+            il_2m_1943:b=yes
+            il_2_37_1943:b=yes
+            il-2m:b=yes
+            il-2m_mstitel:b=yes
+            pe-2-1:b=yes
+            pe-2-31:b=yes
+            pe-2-83:b=yes
+            pe-2-205:b=yes
+            pe-3:b=yes
+            pe-3_bis:b=yes
+            pe-3_early:b=yes
+            er-2_m105_mv3:b=yes
+            er-2_m105_tat:b=yes
+            er-2_m105r_lu2b:b=yes
+            er-2_m105r_tat:b=yes
+            il-4:b=yes
+            db_3b:b=yes
+          }
+        }
+
+        teamB{
+          unlimitedUnits{
+            he_112a_0:b=yes
+            he_112b_0:b=yes
+            he_112b_1:b=yes
+            he_112b_2:b=yes
+            he_112v_5:b=yes
+            bf-109e-1:b=yes
+            bf-109e-3:b=yes
+            bf-109e-4:b=yes
+            bf-109e-7:b=yes
+            bf-109f-2:b=yes
+            bf-109f-4:b=yes
+            bf-109f-4_trop:b=yes
+            bf-109g-2:b=yes
+            bf-109g-2_romania:b=yes
+            bf-109g-6:b=yes
+            fw-190a-1:b=yes
+            fw-190a-4:b=yes
+            fw-190a-5_cannons:b=yes
+            fw-190a-5:b=yes
+            fw-190a-5_u2:b=yes
+            ju-87d-3:b=yes
+            ju-87d-5:b=yes
+            ju-87g_1:b=yes
+            ju-87g_2:b=yes
+            ju-88a-1:b=yes
+            ju-88a-4:b=yes
+            ju-88c-6:b=yes
+            bf-110c-4:b=yes
+            bf-110f-2:b=yes
+            bf-110g-2:b=yes
+            hs-129b-2:b=yes
+            hs-129b-3:b=yes
+            he-111h-6:b=yes
+            he-111h-16_winter:b=yes
+            fw_200c_1:b=yes
+            do_217e_2:b=yes
+            do_217n_1:b=yes
+            do_217n_2:b=yes
+            me-410a-1:b=yes
+            he51c1:b=yes
+          }
+        }
+      }
+    }
+
     missionType{
       _Dom:b=no
       _Conq:b=no
@@ -141,6 +247,612 @@ imports{
 triggers{
   isCategory:b=yes
   is_enabled:b=yes
+
+  Trg_Mission_init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+      objectGroupSetAirfield{
+        army:i=1
+        target:t="A_af_main"
+      }
+
+      airfieldSetVisibility{
+        target:t="A_af_main"
+        team:t="A"
+      }
+
+      missionMarkAsRespawnPoint{
+        loc_name:t="Main AF"
+        spawnEffect:b=no
+        isStrictSpawn:b=no
+        resetStrictSpawnIndex:b=no
+        isAirfield:b=yes
+        isUnit:b=no
+        useExisting:b=no
+        isIndividual:b=no
+        onlyOnePlayerPerSpawnPoint:b=no
+        removeAreas:b=no
+        replaceAreas:b=no
+        canSpawnOnNeutral:b=no
+        showOnMap:b=no
+        radius:r=-1
+        target:t="A_af_main"
+        team:t="A"
+      }
+
+      objectGroupSetAirfield{
+        army:i=2
+        target:t="B_af_main"
+      }
+
+      airfieldSetVisibility{
+        target:t="B_af_main"
+        team:t="B"
+      }
+
+      missionMarkAsRespawnPoint{
+        loc_name:t="Main AF"
+        spawnEffect:b=yes
+        isStrictSpawn:b=no
+        resetStrictSpawnIndex:b=no
+        isAirfield:b=yes
+        isUnit:b=no
+        useExisting:b=no
+        isIndividual:b=no
+        onlyOnePlayerPerSpawnPoint:b=no
+        removeAreas:b=no
+        replaceAreas:b=no
+        canSpawnOnNeutral:b=no
+        showOnMap:b=no
+        radius:r=-1
+        target:t="B_af_main"
+        team:t="B"
+      }
+
+      triggerEnable{
+        target:t="Trg_A_af_set_n_01_e_03"
+        target:t="Trg_A_af_set_s_01_e_03"
+        target:t="Trg_B_af_set_n_01_w_03"
+        target:t="Trg_B_af_set_s_01_w_03"
+      }
+
+      __comment{
+        value:t="Set to immortal and invisible dummy units"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="A_bmb_small_base_target"
+        object:t="B_bmb_small_base_target"
+        object:t="indic_dummy"
+        object:t="dummy_airfield"
+        object:t="ogroup_dummy"
+        isImmortal:b=yes
+        stealthRadius:r=-1
+        forceVisibleOnMap:b=no
+      }
+
+      __comment{
+        value:t="Init units"
+      }
+
+      unitPutToSleep{
+        target:t="A_gs_allsquad"
+        target:t="B_gs_allsquad"
+        target:t="A_gd_allsquad_s_01"
+        target:t="B_gd_allsquad_s_01"
+        target:t="A_gd_allsquad_n_01"
+        target:t="B_gd_allsquad_n_01"
+        target:t="squad_uPlane_A"
+        target:t="squad_uPlane_B"
+        target:t="A_sh_gds_usquad_e_01_n_01"
+        target:t="A_bmb_sbase_usquad_e_01_n_01"
+      }
+
+      unitRestore{
+        ressurectIfDead:b=yes
+        fullRestore:b=yes
+        target:t="A_gs_allsquad"
+        target:t="B_gs_allsquad"
+        target:t="A_gd_allsquad_s_01"
+        target:t="B_gd_allsquad_s_01"
+        target:t="A_gd_allsquad_n_01"
+        target:t="B_gd_allsquad_n_01"
+      }
+
+      triggerEnable{
+        target:t="Trg_faa_set_properties"
+      }
+
+      triggerEnable{
+        target:t="Trg_gs_set_units_properties"
+      }
+
+      triggerEnable{
+        target:t="Trg_afs_front_line_update"
+      }
+
+      triggerEnable{
+        target:t="Trg_Debug_or_not_debug"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  Trg_gs_set_units_properties{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+      periodicEvent{
+        time:r=1
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="A_gsa_sq_tank"
+        object:t="B_gsa_sq_tank"
+        targetableByAi:b=yes
+        forceVisibleOnMap:b=yes
+        accuracy:r=0.5
+        effShootingRate:r=0
+        hasExhaust:b=yes
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="A_gsa_sq_tank"
+        attack_type:t="fire_at_will_gnd"
+        fireRandom:b=yes
+        effShootingRateInZone:r=0
+        accuracyInZone:r=1.5
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="B_gsa_sq_tank"
+        attack_type:t="fire_at_will_gnd"
+        fireRandom:b=yes
+        effShootingRateInZone:r=0
+        accuracyInZone:r=1.5
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="A_gd_allsquad_n_01"
+        object:t="A_gd_allsquad_s_01"
+        object:t="B_gd_allsquad_n_01"
+        object:t="B_gd_allsquad_s_01"
+        targetableByAi:b=yes
+        forceVisibleOnMap:b=yes
+        accuracy:r=0.5
+        effShootingRate:r=0
+        hasExhaust:b=yes
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="A_gd_sq_n_01_aaa"
+        object:t="A_gd_sq_s_01_aaa"
+        object:t="B_gd_sq_n_01_aaa"
+        object:t="B_gd_sq_s_01_aaa"
+        targetableByAi:b=yes
+        forceVisibleOnMap:b=yes
+        accuracy:r=0.5
+        effShootingRate:r=0.5
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  Trg_faa_set_properties{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+      periodicEvent{
+        time:r=1
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+      __comment{
+        value:t="Set field aa to immortal and disable unused at mission start"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="A_faa_sq_n_01_e_01"
+        object:t="A_faa_sq_n_01_e_02"
+        object:t="A_faa_sq_n_01_e_03"
+        object:t="A_faa_sq_s_01_e_01"
+        object:t="A_faa_sq_s_01_e_02"
+        object:t="A_faa_sq_s_01_e_03"
+        object:t="A_faa_sq_n_01_w_01"
+        object:t="A_faa_sq_n_01_c_00"
+        object:t="A_faa_sq_s_01_w_01"
+        object:t="A_faa_sq_s_01_c_00"
+        object:t="A_faa_sq_main"
+        targetableByAi:b=no
+        isImmortal:b=yes
+        stealthRadius:r=-1
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="B_faa_sq_n_01_e_01"
+        object:t="B_faa_sq_n_01_c_00"
+        object:t="B_faa_sq_s_01_e_01"
+        object:t="B_faa_sq_s_01_c_00"
+        object:t="B_faa_sq_n_01_w_01"
+        object:t="B_faa_sq_n_01_w_02"
+        object:t="B_faa_sq_s_01_w_01"
+        object:t="B_faa_sq_s_01_w_02"
+        object:t="B_faa_sq_n_01_w_03"
+        object:t="B_faa_sq_s_01_w_03"
+        object:t="B_faa_sq_main"
+        targetableByAi:b=no
+        isImmortal:b=yes
+        stealthRadius:r=-1
+      }
+
+      unitPutToSleep{
+        target:t="A_faa_sq_n_01_w_01"
+        target:t="A_faa_sq_n_01_c_00"
+        target:t="A_faa_sq_s_01_w_01"
+        target:t="A_faa_sq_s_01_c_00"
+        target:t="B_faa_sq_n_01_e_01"
+        target:t="B_faa_sq_n_01_c_00"
+        target:t="B_faa_sq_s_01_e_01"
+        target:t="B_faa_sq_s_01_c_00"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  Trg_Debug_or_not_debug{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+      periodicEvent{
+        time:r=1
+      }
+    }
+
+    conditions{
+      varCompareInt{
+        var_value:t="var_Debug"
+        value:i=0
+        comparasion_func:t="equal"
+      }
+    }
+
+    actions{
+      triggerEnable{
+        target:t="Trg_gd_set"
+      }
+    }
+
+    else_actions{
+      triggerEnable{
+        target:t="Trg_Debug_gnd_set"
+      }
+    }
+  }
+
+  Trg_Debug_gnd_set{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+      periodicEvent{
+        time:r=1
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+      triggerEnable{
+        target:t="Trg_Debug_A_inicator_update"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="var_front_line_state"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="var_front_hold_side"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="var_front_hold_coord"
+      }
+
+      missionMarkAsRespawnPoint{
+        loc_name:t=""
+        spawnEffect:b=no
+        isStrictSpawn:b=no
+        resetStrictSpawnIndex:b=no
+        isAirfield:b=no
+        isUnit:b=no
+        useExisting:b=no
+        isIndividual:b=no
+        onlyOnePlayerPerSpawnPoint:b=no
+        removeAreas:b=no
+        replaceAreas:b=no
+        canSpawnOnNeutral:b=no
+        showOnMap:b=yes
+        radius:r=-1
+        target:t="A_sh_gds_tspawn_e_01_n_01"
+        team:t="A"
+
+        tags{
+          air:b=yes
+          type_bomber:b=yes
+          type_assault:b=yes
+          type_heavy_fighter:b=yes
+          type_light_bomber:b=yes
+          type_medium_bomber:b=yes
+          type_frontline_bomber:b=yes
+          type_hydroplane:b=yes
+          carrier_take_off:b=yes
+        }
+      }
+
+      airfieldSetVisibility{
+        target:t="A_sh_gds_tspawn_e_01_n_01"
+        team:t="A"
+      }
+
+      missionMarkAsRespawnPoint{
+        loc_name:t="Debug A spawn East 1"
+        spawnEffect:b=no
+        isStrictSpawn:b=no
+        resetStrictSpawnIndex:b=no
+        isAirfield:b=no
+        isUnit:b=no
+        useExisting:b=no
+        isIndividual:b=no
+        onlyOnePlayerPerSpawnPoint:b=no
+        removeAreas:b=no
+        replaceAreas:b=no
+        canSpawnOnNeutral:b=no
+        showOnMap:b=yes
+        radius:r=-1
+        target:t="debug_A_spawn_p01_n_01"
+        team:t="A"
+      }
+
+      airfieldSetVisibility{
+        target:t="debug_A_spawn_p01_n_01"
+        team:t="A"
+      }
+
+      missionMarkAsRespawnPoint{
+        loc_name:t="Debug A spawn South Center "
+        spawnEffect:b=no
+        isStrictSpawn:b=no
+        resetStrictSpawnIndex:b=no
+        isAirfield:b=no
+        isUnit:b=no
+        useExisting:b=no
+        isIndividual:b=no
+        onlyOnePlayerPerSpawnPoint:b=no
+        removeAreas:b=no
+        replaceAreas:b=no
+        canSpawnOnNeutral:b=no
+        showOnMap:b=yes
+        radius:r=-1
+        target:t="debug_A_spawn_c_00_s_01"
+        team:t="A"
+      }
+
+      airfieldSetVisibility{
+        target:t="debug_A_spawn_c_00_s_01"
+        team:t="A"
+      }
+
+      missionMarkAsRespawnPoint{
+        loc_name:t="Debug A spawn North West 1"
+        spawnEffect:b=no
+        isStrictSpawn:b=no
+        resetStrictSpawnIndex:b=no
+        isAirfield:b=no
+        isUnit:b=no
+        useExisting:b=no
+        isIndividual:b=no
+        onlyOnePlayerPerSpawnPoint:b=no
+        removeAreas:b=no
+        replaceAreas:b=no
+        canSpawnOnNeutral:b=no
+        showOnMap:b=yes
+        radius:r=-1
+        target:t="debug_A_spawn_m01_n_01"
+        team:t="A"
+      }
+
+      airfieldSetVisibility{
+        target:t="debug_A_spawn_m01_n_01"
+        team:t="A"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="A_gd_sq_n_01_aaa"
+        object:t="A_gd_sq_s_01_aaa"
+        object:t="B_gd_sq_n_01_aaa"
+        object:t="B_gd_sq_s_01_aaa"
+        targetableByAi:b=yes
+        forceVisibleOnMap:b=yes
+        accuracy:r=0.5
+        effShootingRate:r=0
+      }
+
+      varSetInt{
+        value:i=-2000
+        var:t="var_A_gd_n_01_score_to_destroy"
+        var:t="var_A_gd_s_01_score_to_destroy"
+        var:t="var_B_gd_n_01_score_to_destroy"
+        var:t="var_B_gd_s_01_score_to_destroy"
+      }
+
+      varSetInt{
+        value:i=-750
+        var:t="var_A_gsa_score_to_destroy"
+        var:t="var_B_gsa_score_to_destroy"
+      }
+
+      varSetInt{
+        value:i=-350
+        var:t="var_A_gsd_score_to_destroy"
+        var:t="var_B_gsd_score_to_destroy"
+      }
+
+      triggerEnable{
+        target:t="Trg_afs_front_line_update"
+      }
+
+      __triggerEnable{
+        target:t="Trg_gs_set"
+      }
+
+      triggerEnable{
+        target:t="Trg_gd_set"
+      }
+
+      __wait{
+        time:r=60
+      }
+
+      __triggerEnable{
+        target:t="Trg_afs_front_line_update"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  Trg_Debug_A_inicator_update{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+      periodicEvent{
+        time:r=0.7
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        delta:i=3
+        icon:t="helicopter"
+        "icon army":i=1
+        set:b=yes
+        target:t="indic_dummy"
+        var:t="var_front_line_state"
+        team:t="Both"
+      }
+    }
+
+    else_actions{
+    }
+  }
 
   Trg_gd_inicator_update{
     is_enabled:b=yes
@@ -10921,711 +11633,6 @@ triggers{
       }
     }
   }
-
-  Trg_Mission_init{
-    is_enabled:b=yes
-    comments:t=""
-
-    props{
-      actionsType:t="PERFORM_ONE_BY_ONE"
-      conditionsType:t="ALL"
-      enableAfterComplete:b=no
-    }
-
-    events{
-      initMission{
-      }
-    }
-
-    conditions{
-    }
-
-    actions{
-      objectGroupSetAirfield{
-        army:i=1
-        target:t="A_af_main"
-      }
-
-      airfieldSetVisibility{
-        target:t="A_af_main"
-        team:t="A"
-      }
-
-      missionMarkAsRespawnPoint{
-        loc_name:t="Main AF"
-        spawnEffect:b=no
-        isStrictSpawn:b=no
-        resetStrictSpawnIndex:b=no
-        isAirfield:b=yes
-        isUnit:b=no
-        useExisting:b=no
-        isIndividual:b=no
-        onlyOnePlayerPerSpawnPoint:b=no
-        removeAreas:b=no
-        replaceAreas:b=no
-        canSpawnOnNeutral:b=no
-        showOnMap:b=no
-        radius:r=-1
-        target:t="A_af_main"
-        team:t="A"
-      }
-
-      objectGroupSetAirfield{
-        army:i=2
-        target:t="B_af_main"
-      }
-
-      airfieldSetVisibility{
-        target:t="B_af_main"
-        team:t="B"
-      }
-
-      missionMarkAsRespawnPoint{
-        loc_name:t="Main AF"
-        spawnEffect:b=yes
-        isStrictSpawn:b=no
-        resetStrictSpawnIndex:b=no
-        isAirfield:b=yes
-        isUnit:b=no
-        useExisting:b=no
-        isIndividual:b=no
-        onlyOnePlayerPerSpawnPoint:b=no
-        removeAreas:b=no
-        replaceAreas:b=no
-        canSpawnOnNeutral:b=no
-        showOnMap:b=no
-        radius:r=-1
-        target:t="B_af_main"
-        team:t="B"
-      }
-
-      triggerEnable{
-        target:t="Trg_A_af_set_n_01_e_03"
-        target:t="Trg_A_af_set_s_01_e_03"
-        target:t="Trg_B_af_set_n_01_w_03"
-        target:t="Trg_B_af_set_s_01_w_03"
-      }
-
-      __comment{
-        value:t="Set to immortal and invisible dummy units"
-      }
-
-      unitSetProperties{
-        object_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
-        object:t="A_bmb_small_base_target"
-        object:t="B_bmb_small_base_target"
-        object:t="indic_dummy"
-        object:t="dummy_airfield"
-        object:t="ogroup_dummy"
-        isImmortal:b=yes
-        stealthRadius:r=-1
-        forceVisibleOnMap:b=no
-      }
-
-      __comment{
-        value:t="Init units"
-      }
-
-      unitPutToSleep{
-        target:t="A_gs_allsquad"
-        target:t="B_gs_allsquad"
-        target:t="A_gd_allsquad_s_01"
-        target:t="B_gd_allsquad_s_01"
-        target:t="A_gd_allsquad_n_01"
-        target:t="B_gd_allsquad_n_01"
-        target:t="squad_uPlane_A"
-        target:t="squad_uPlane_B"
-        target:t="A_sh_gds_usquad_e_01_n_01"
-        target:t="A_bmb_sbase_usquad_e_01_n_01"
-      }
-
-      unitRestore{
-        ressurectIfDead:b=yes
-        fullRestore:b=yes
-        target:t="A_gs_allsquad"
-        target:t="B_gs_allsquad"
-        target:t="A_gd_allsquad_s_01"
-        target:t="B_gd_allsquad_s_01"
-        target:t="A_gd_allsquad_n_01"
-        target:t="B_gd_allsquad_n_01"
-      }
-
-      triggerEnable{
-        target:t="Trg_faa_set_properties"
-      }
-
-      triggerEnable{
-        target:t="Trg_gs_set_units_properties"
-      }
-
-      triggerEnable{
-        target:t="Trg_afs_front_line_update"
-      }
-
-      triggerEnable{
-        target:t="Trg_gd_set"
-      }
-
-      __triggerEnable{
-        target:t="Trg_Debug_gnd_set"
-      }
-    }
-
-    else_actions{
-    }
-  }
-
-  Trg_Debug_gnd_set{
-    is_enabled:b=no
-    comments:t=""
-
-    props{
-      actionsType:t="PERFORM_ONE_BY_ONE"
-      conditionsType:t="ALL"
-      enableAfterComplete:b=no
-    }
-
-    events{
-      periodicEvent{
-        time:r=1
-      }
-    }
-
-    conditions{
-    }
-
-    actions{
-      triggerEnable{
-        target:t="Trg_Debug_A_inicator_update"
-      }
-
-      varSetInt{
-        value:i=0
-        var:t="var_front_line_state"
-      }
-
-      varSetInt{
-        value:i=0
-        var:t="var_front_hold_side"
-      }
-
-      varSetInt{
-        value:i=0
-        var:t="var_front_hold_coord"
-      }
-
-      missionMarkAsRespawnPoint{
-        loc_name:t=""
-        spawnEffect:b=no
-        isStrictSpawn:b=no
-        resetStrictSpawnIndex:b=no
-        isAirfield:b=no
-        isUnit:b=no
-        useExisting:b=no
-        isIndividual:b=no
-        onlyOnePlayerPerSpawnPoint:b=no
-        removeAreas:b=no
-        replaceAreas:b=no
-        canSpawnOnNeutral:b=no
-        showOnMap:b=yes
-        radius:r=-1
-        target:t="A_sh_gds_tspawn_e_01_n_01"
-        team:t="A"
-
-        tags{
-          air:b=yes
-          type_bomber:b=yes
-          type_assault:b=yes
-          type_heavy_fighter:b=yes
-          type_light_bomber:b=yes
-          type_medium_bomber:b=yes
-          type_frontline_bomber:b=yes
-          type_hydroplane:b=yes
-          carrier_take_off:b=yes
-        }
-      }
-
-      airfieldSetVisibility{
-        target:t="A_sh_gds_tspawn_e_01_n_01"
-        team:t="A"
-      }
-
-      missionMarkAsRespawnPoint{
-        loc_name:t="Debug A spawn East 1"
-        spawnEffect:b=no
-        isStrictSpawn:b=no
-        resetStrictSpawnIndex:b=no
-        isAirfield:b=no
-        isUnit:b=no
-        useExisting:b=no
-        isIndividual:b=no
-        onlyOnePlayerPerSpawnPoint:b=no
-        removeAreas:b=no
-        replaceAreas:b=no
-        canSpawnOnNeutral:b=no
-        showOnMap:b=yes
-        radius:r=-1
-        target:t="debug_A_spawn_p01_n_01"
-        team:t="A"
-      }
-
-      airfieldSetVisibility{
-        target:t="debug_A_spawn_p01_n_01"
-        team:t="A"
-      }
-
-      missionMarkAsRespawnPoint{
-        loc_name:t="Debug A spawn North Center"
-        spawnEffect:b=no
-        isStrictSpawn:b=no
-        resetStrictSpawnIndex:b=no
-        isAirfield:b=no
-        isUnit:b=no
-        useExisting:b=no
-        isIndividual:b=no
-        onlyOnePlayerPerSpawnPoint:b=no
-        removeAreas:b=no
-        replaceAreas:b=no
-        canSpawnOnNeutral:b=no
-        showOnMap:b=yes
-        radius:r=-1
-        target:t="debug_A_spawn_c_00_n_01"
-        team:t="A"
-      }
-
-      airfieldSetVisibility{
-        target:t="debug_A_spawn_c_00_n_01"
-        team:t="A"
-      }
-
-      missionMarkAsRespawnPoint{
-        loc_name:t="Debug A spawn South Center "
-        spawnEffect:b=no
-        isStrictSpawn:b=no
-        resetStrictSpawnIndex:b=no
-        isAirfield:b=no
-        isUnit:b=no
-        useExisting:b=no
-        isIndividual:b=no
-        onlyOnePlayerPerSpawnPoint:b=no
-        removeAreas:b=no
-        replaceAreas:b=no
-        canSpawnOnNeutral:b=no
-        showOnMap:b=yes
-        radius:r=-1
-        target:t="debug_A_spawn_c_00_s_01"
-        team:t="A"
-      }
-
-      airfieldSetVisibility{
-        target:t="debug_A_spawn_c_00_s_01"
-        team:t="A"
-      }
-
-      missionMarkAsRespawnPoint{
-        loc_name:t="Debug A spawn North West 1"
-        spawnEffect:b=no
-        isStrictSpawn:b=no
-        resetStrictSpawnIndex:b=no
-        isAirfield:b=no
-        isUnit:b=no
-        useExisting:b=no
-        isIndividual:b=no
-        onlyOnePlayerPerSpawnPoint:b=no
-        removeAreas:b=no
-        replaceAreas:b=no
-        canSpawnOnNeutral:b=no
-        showOnMap:b=yes
-        radius:r=-1
-        target:t="debug_A_spawn_m01_n_01"
-        team:t="A"
-      }
-
-      airfieldSetVisibility{
-        target:t="debug_A_spawn_m01_n_01"
-        team:t="A"
-      }
-
-      unitSetProperties{
-        object_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
-        object:t="A_gd_sq_n_01_aaa"
-        object:t="A_gd_sq_s_01_aaa"
-        object:t="B_gd_sq_n_01_aaa"
-        object:t="B_gd_sq_s_01_aaa"
-        targetableByAi:b=yes
-        forceVisibleOnMap:b=yes
-        accuracy:r=0.5
-        effShootingRate:r=0
-      }
-
-      varSetInt{
-        value:i=-2000
-        var:t="var_A_gd_n_01_score_to_destroy"
-        var:t="var_A_gd_s_01_score_to_destroy"
-        var:t="var_B_gd_n_01_score_to_destroy"
-        var:t="var_B_gd_s_01_score_to_destroy"
-      }
-
-      varSetInt{
-        value:i=-750
-        var:t="var_A_gsa_score_to_destroy"
-        var:t="var_B_gsa_score_to_destroy"
-      }
-
-      varSetInt{
-        value:i=-350
-        var:t="var_A_gsd_score_to_destroy"
-        var:t="var_B_gsd_score_to_destroy"
-      }
-
-      triggerEnable{
-        target:t="Trg_afs_front_line_update"
-      }
-
-      __triggerEnable{
-        target:t="Trg_gs_set"
-      }
-
-      triggerEnable{
-        target:t="Trg_gd_set"
-      }
-
-      __wait{
-        time:r=60
-      }
-
-      __triggerEnable{
-        target:t="Trg_afs_front_line_update"
-      }
-    }
-
-    else_actions{
-    }
-  }
-
-  Trg_Debug_A_inicator_update{
-    is_enabled:b=no
-    comments:t=""
-
-    props{
-      actionsType:t="PERFORM_ONE_BY_ONE"
-      conditionsType:t="ALL"
-      enableAfterComplete:b=yes
-    }
-
-    events{
-      periodicEvent{
-        time:r=0.7
-      }
-    }
-
-    conditions{
-    }
-
-    actions{
-      missionSetTargetsIndicator{
-        target_type:t="isAlive"
-        target_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
-        delta:i=3
-        icon:t="helicopter"
-        "icon army":i=1
-        set:b=yes
-        target:t="indic_dummy"
-        var:t="var_front_line_state"
-        team:t="Both"
-      }
-
-      missionSetTargetsIndicator{
-        target_type:t="isAlive"
-        target_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
-        delta:i=1
-        icon:t="air"
-        "icon army":i=1
-        set:b=yes
-        target:t="indic_dummy"
-        var:t="var_A_wins_score"
-        team:t="A"
-      }
-
-      missionSetTargetsIndicator{
-        target_type:t="isAlive"
-        target_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
-        delta:i=1
-        icon:t="air"
-        "icon army":i=2
-        set:b=yes
-        target:t="indic_dummy"
-        var:t="var_B_wins_score"
-        team:t="A"
-      }
-
-      missionSetTargetsIndicator{
-        target_type:t="isAlive"
-        target_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
-        delta:i=0
-        icon:t="building"
-        "icon army":i=1
-        set:b=yes
-        target:t="indic_dummy"
-        var:t="var_A_gsd_score"
-        team:t="A"
-      }
-
-      missionSetTargetsIndicator{
-        target_type:t="isAlive"
-        target_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
-        delta:i=0
-        icon:t="tank"
-        "icon army":i=1
-        set:b=yes
-        target:t="indic_dummy"
-        var:t="var_A_gsa_score"
-        team:t="A"
-      }
-
-      __missionSetTargetsIndicator{
-        target_type:t="isAlive"
-        target_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
-        delta:i=0
-        icon:t="troops"
-        "icon army":i=1
-        set:b=yes
-        target:t="indic_dummy"
-        var:t="var_debug_counter"
-        team:t="Both"
-      }
-
-      missionGetBombingAreaHP{
-        target:t="ar_A_bmb_af_c00_n_01"
-        input_var:t="var_A_af_n_01_e_01_hp"
-      }
-
-      varSetInt{
-        value:i=0
-        var:t="var_indic_tmp_int"
-      }
-
-      varModify{
-        operator:t="add"
-        value:r=1
-        var:t="var_indic_tmp_int"
-        use_variable:b=yes
-        var_value:t="var_A_af_n_01_e_01_hp"
-      }
-
-      missionSetTargetsIndicator{
-        target_type:t="isAlive"
-        target_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
-        delta:i=1
-        icon:t="truck"
-        "icon army":i=1
-        set:b=yes
-        target:t="indic_dummy"
-        var:t="var_indic_tmp_int"
-        team:t="A"
-      }
-    }
-
-    else_actions{
-    }
-  }
-
-  Trg_gs_set_units_properties{
-    is_enabled:b=no
-    comments:t=""
-
-    props{
-      actionsType:t="PERFORM_ONE_BY_ONE"
-      conditionsType:t="ALL"
-      enableAfterComplete:b=no
-    }
-
-    events{
-      periodicEvent{
-        time:r=1
-      }
-    }
-
-    conditions{
-    }
-
-    actions{
-      unitSetProperties{
-        object_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
-        object:t="A_gsa_sq_tank"
-        object:t="B_gsa_sq_tank"
-        targetableByAi:b=yes
-        forceVisibleOnMap:b=yes
-        accuracy:r=0.5
-        effShootingRate:r=0
-        hasExhaust:b=yes
-      }
-
-      unitAttackTarget{
-        playerAttracted:b=no
-        object:t="A_gsa_sq_tank"
-        attack_type:t="fire_at_will_gnd"
-        fireRandom:b=yes
-        effShootingRateInZone:r=0
-        accuracyInZone:r=1.5
-      }
-
-      unitAttackTarget{
-        playerAttracted:b=no
-        object:t="B_gsa_sq_tank"
-        attack_type:t="fire_at_will_gnd"
-        fireRandom:b=yes
-        effShootingRateInZone:r=0
-        accuracyInZone:r=1.5
-      }
-
-      unitSetProperties{
-        object_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
-        object:t="A_gd_allsquad_n_01"
-        object:t="A_gd_allsquad_s_01"
-        object:t="B_gd_allsquad_n_01"
-        object:t="B_gd_allsquad_s_01"
-        targetableByAi:b=yes
-        forceVisibleOnMap:b=yes
-        accuracy:r=0.5
-        effShootingRate:r=0
-        hasExhaust:b=yes
-      }
-
-      unitSetProperties{
-        object_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
-        object:t="A_gd_sq_n_01_aaa"
-        object:t="A_gd_sq_s_01_aaa"
-        object:t="B_gd_sq_n_01_aaa"
-        object:t="B_gd_sq_s_01_aaa"
-        targetableByAi:b=yes
-        forceVisibleOnMap:b=yes
-        accuracy:r=0.5
-        effShootingRate:r=0.5
-      }
-    }
-
-    else_actions{
-    }
-  }
-
-  Trg_faa_set_properties{
-    is_enabled:b=no
-    comments:t=""
-
-    props{
-      actionsType:t="PERFORM_ONE_BY_ONE"
-      conditionsType:t="ALL"
-      enableAfterComplete:b=no
-    }
-
-    events{
-      periodicEvent{
-        time:r=1
-      }
-    }
-
-    conditions{
-    }
-
-    actions{
-      __comment{
-        value:t="Set field aa to immortal and disable unused at mission start"
-      }
-
-      unitSetProperties{
-        object_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
-        object:t="A_faa_sq_n_01_e_01"
-        object:t="A_faa_sq_n_01_e_02"
-        object:t="A_faa_sq_n_01_e_03"
-        object:t="A_faa_sq_s_01_e_01"
-        object:t="A_faa_sq_s_01_e_02"
-        object:t="A_faa_sq_s_01_e_03"
-        object:t="A_faa_sq_n_01_w_01"
-        object:t="A_faa_sq_n_01_c_00"
-        object:t="A_faa_sq_s_01_w_01"
-        object:t="A_faa_sq_s_01_c_00"
-        object:t="A_faa_sq_main"
-        targetableByAi:b=no
-        isImmortal:b=yes
-        stealthRadius:r=-1
-      }
-
-      unitSetProperties{
-        object_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
-        object:t="B_faa_sq_n_01_e_01"
-        object:t="B_faa_sq_n_01_c_00"
-        object:t="B_faa_sq_s_01_e_01"
-        object:t="B_faa_sq_s_01_c_00"
-        object:t="B_faa_sq_n_01_w_01"
-        object:t="B_faa_sq_n_01_w_02"
-        object:t="B_faa_sq_s_01_w_01"
-        object:t="B_faa_sq_s_01_w_02"
-        object:t="B_faa_sq_n_01_w_03"
-        object:t="B_faa_sq_s_01_w_03"
-        object:t="B_faa_sq_main"
-        targetableByAi:b=no
-        isImmortal:b=yes
-        stealthRadius:r=-1
-      }
-
-      unitPutToSleep{
-        target:t="A_faa_sq_n_01_w_01"
-        target:t="A_faa_sq_n_01_c_00"
-        target:t="A_faa_sq_s_01_w_01"
-        target:t="A_faa_sq_s_01_c_00"
-        target:t="B_faa_sq_n_01_e_01"
-        target:t="B_faa_sq_n_01_c_00"
-        target:t="B_faa_sq_s_01_e_01"
-        target:t="B_faa_sq_s_01_c_00"
-      }
-    }
-
-    else_actions{
-    }
-  }
 }
 
 mission_objectives{
@@ -11634,6 +11641,7 @@ mission_objectives{
 }
 
 variables{
+  var_Debug:i=0
   cst_A_bmb_small_base_hp_max:r=20000
   cst_B_bmb_small_base_hp_max:r=20000
   cnst_gnd_u_same_type_max:i=20
